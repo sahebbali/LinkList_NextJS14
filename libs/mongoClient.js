@@ -7,7 +7,7 @@ if (!process.env.MONGO_URI) {
 
 const uri = process.env.MONGO_URI;
 const options = {};
-console.log({ uri });
+// console.log({ uri });
 let client;
 let clientPromise;
 
