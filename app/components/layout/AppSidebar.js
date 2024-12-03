@@ -16,7 +16,7 @@ export default function AppSidebar() {
           "flex gap-4 p-2 " + (path === "/account" ? "text-blue-500" : "")
         }
       >
-        <FaFileLines fixedWidth={true} className={"w-6 h-6"} />
+        <FaFileLines className={"w-6 h-6"} />
         <span className="">My Page</span>
       </Link>
       <Link
@@ -25,7 +25,7 @@ export default function AppSidebar() {
           "flex gap-4 p-2 " + (path === "/analytics" ? "text-blue-500" : "")
         }
       >
-        <FaChartLine fixedWidth={true} className={"w-6 h-6"} />
+        <FaChartLine className={"w-6 h-6"} />
         <span className="">Analytics</span>
       </Link>
       <LogoutButton

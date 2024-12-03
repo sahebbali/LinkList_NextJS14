@@ -12,6 +12,7 @@
     "@auth/mongodb-adapter": "^3.7.4",
     "@fortawesome/free-brands-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "clone-deep": "^4.0.1",
     "mongodb": "^6.11.0",
     "mongoose": "^8.8.3",
     "next": "14.2.5",
