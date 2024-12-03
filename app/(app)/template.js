@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-// import AppSidebar from "@/components/layout/AppSidebar";
+
 import { Page } from "@/models/Page";
 // import { faBars, faLink } from "@fortawesome/free-solid-svg-icons";
 import { FaBars } from "react-icons/fa";
@@ -14,6 +14,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Toaster } from "react-hot-toast";
+import AppSidebar from "../components/layout/AppSidebar";
 
 const lato = Lato({ subsets: ["latin"], weight: ["400", "700"] });
 
@@ -68,7 +69,9 @@ export default async function AppTemplate({ children, ...rest }) {
                   <span>{page.uri}</span>
                 </Link>
               )}
-              <div className="text-center">{/* <AppSidebar /> */}</div>
+              <div className="text-center">
+                <AppSidebar />
+              </div>
             </div>
           </aside>
           <div className="grow">{children}</div>
