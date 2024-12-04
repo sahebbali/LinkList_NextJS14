@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import cloneDeep from "clone-deep";
+import UsernameForm from "@/app/components/forms/UsernameForm";
 
 export default async function AccountPage({ searchParams }) {
   const session = await getServerSession(authOptions);
@@ -20,11 +21,17 @@ export default async function AccountPage({ searchParams }) {
   // const leanPage = cloneDeep(page?.toJSON());
   // leanPage._id = leanPage?._id?.toString();
   // if (page) {
-  return (
-    <>
-      {" "}
-      <PageSettingsForm  user={session.user} />{" "}
-    </>
-  );
+  // return (
+  //   <>
+  //     {" "}
+  //     <PageSettingsForm  user={session.user} />{" "}
+  //   </>
+  // );
   // }
+
+  return (
+    <div>
+      <UsernameForm desiredUsername={desiredUsername} />
+    </div>
+  );
 }
