@@ -27,7 +27,7 @@ export default function PageSettingsForm({ page, user }) {
 
   async function handleCoverImageChange(ev) {
     await upload(ev, (link) => {
-      setBgImage(link);
+      setBgImage(link?.secure_url);
     });
   }
   async function handleAvatarImageChange(ev) {
@@ -35,6 +35,7 @@ export default function PageSettingsForm({ page, user }) {
       setAvatar(link);
     });
   }
+  // console.log({bgImage})
   return (
     <div>
       <SectionBox>
