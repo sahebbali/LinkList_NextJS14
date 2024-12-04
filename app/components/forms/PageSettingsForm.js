@@ -1,6 +1,6 @@
 "use client";
 import { savePageSettings } from "@/actions/pageActions";
-// import { upload } from "@/libs/upload";
+import { upload } from "@/libs/upload";
 
 import Image from "next/image";
 import { useState } from "react";
@@ -14,31 +14,27 @@ import RadioTogglers from "../formItems/radioTogglers";
 import SectionBox from "../layout/SectionBox";
 
 export default function PageSettingsForm({ page, user }) {
-  // const [bgType, setBgType] = useState(page.bgType);
-  // const [bgColor, setBgColor] = useState(page.bgColor);
-  // const [bgImage, setBgImage] = useState(page.bgImage);
-  const [bgType, setBgType] = useState("");
-  const [bgColor, setBgColor] = useState("");
-  const [bgImage, setBgImage] = useState("");
+  const [bgType, setBgType] = useState(page.bgType);
+  const [bgColor, setBgColor] = useState(page.bgColor);
+  const [bgImage, setBgImage] = useState(page.bgImage);
   const [avatar, setAvatar] = useState(user?.image);
   async function saveBaseSettings(formData) {
-    console.log({formData})
     const result = await savePageSettings(formData);
     if (result) {
       toast.success("Saved!");
     }
   }
 
-  // async function handleCoverImageChange(ev) {
-  //   await upload(ev, (link) => {
-  //     setBgImage(link);
-  //   });
-  // }
-  // async function handleAvatarImageChange(ev) {
-  //   await upload(ev, (link) => {
-  //     setAvatar(link);
-  //   });
-  // }
+  async function handleCoverImageChange(ev) {
+    await upload(ev, (link) => {
+      setBgImage(link);
+    });
+  }
+  async function handleAvatarImageChange(ev) {
+    await upload(ev, (link) => {
+      setAvatar(link);
+    });
+  }
   return (
     <div>
       <SectionBox>
@@ -53,7 +49,7 @@ export default function PageSettingsForm({ page, user }) {
           >
             <div>
               <RadioTogglers
-                defaultValue={""}
+                defaultValue={page.bgType}
                 options={[
                   { value: "color", icon: FaPalette, label: "Color" },
                   { value: "image", icon: FaImages, label: "Image" },
@@ -68,7 +64,7 @@ export default function PageSettingsForm({ page, user }) {
                       type="color"
                       name="bgColor"
                       onChange={(ev) => setBgColor(ev.target.value)}
-                      // defaultValue={page.bgColor}
+                      defaultValue={page.bgColor}
                     />
                   </div>
                 </div>
@@ -79,7 +75,7 @@ export default function PageSettingsForm({ page, user }) {
                     <input type="hidden" name="bgImage" value={bgImage} />
                     <input
                       type="file"
-                      // onChange={handleCoverImageChange}
+                      onChange={handleCoverImageChange}
                       className="hidden"
                     />
                     <div className="flex gap-2 items-center cursor-pointer">
@@ -109,7 +105,7 @@ export default function PageSettingsForm({ page, user }) {
                 <FaCloudArrowUp />
               </label>
               <input
-                // onChange={handleAvatarImageChange}
+                onChange={handleAvatarImageChange}
                 id="avatarIn"
                 type="file"
                 className="hidden"
@@ -125,7 +121,7 @@ export default function PageSettingsForm({ page, user }) {
               type="text"
               id="nameIn"
               name="displayName"
-              defaultValue={""}
+              defaultValue={page.displayName}
               placeholder="John Doe"
             />
             <label className="input-label" htmlFor="locationIn">
@@ -135,7 +131,7 @@ export default function PageSettingsForm({ page, user }) {
               type="text"
               id="locationIn"
               name="location"
-              defaultValue={""}
+              defaultValue={page.location}
               placeholder="Somewhere in the world"
             />
             <label className="input-label" htmlFor="bioIn">
@@ -143,7 +139,7 @@ export default function PageSettingsForm({ page, user }) {
             </label>
             <textarea
               name="bio"
-              defaultValue={""}
+              defaultValue={page.bio}
               id="bioIn"
               placeholder="Your bio goes here..."
             />
