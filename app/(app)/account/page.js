@@ -7,6 +7,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import cloneDeep from "clone-deep";
 import UsernameForm from "@/app/components/forms/UsernameForm";
+import PageButtonsForm from "@/app/components/forms/PageButtonsForm";
 
 export default async function AccountPage({ searchParams }) {
   const session = await getServerSession(authOptions);
@@ -16,7 +17,7 @@ export default async function AccountPage({ searchParams }) {
   }
   mongoose.connect(process.env.MONGO_URI);
   const page = await Page.findOne({ owner: session?.user?.email });
-  // console.log({ page });
+  console.log({ page });
 
   if (page) {
     const leanPage = cloneDeep(page?.toJSON());
@@ -25,6 +26,8 @@ export default async function AccountPage({ searchParams }) {
       <>
         {" "}
         <PageSettingsForm page={leanPage} user={session.user} />{" "}
+        <PageButtonsForm page={leanPage} user={session.user} />
+
       </>
     );
   }
