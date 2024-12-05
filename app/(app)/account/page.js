@@ -1,6 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import PageSettingsForm from "@/app/components/forms/PageSettingsForm";
-import {upload} from "@/libs/upload";
+import { upload } from "@/libs/upload";
 import { Page } from "@/models/Page";
 import mongoose from "mongoose";
 import { getServerSession } from "next-auth";
@@ -18,7 +18,7 @@ export default async function AccountPage({ searchParams }) {
   }
   mongoose.connect(process.env.MONGO_URI);
   const page = await Page.findOne({ owner: session?.user?.email });
-  console.log({ page });
+  // console.log({ page });
 
   if (page) {
     const leanPage = cloneDeep(page?.toJSON());
@@ -29,8 +29,6 @@ export default async function AccountPage({ searchParams }) {
         <PageSettingsForm page={leanPage} user={session.user} />{" "}
         <PageButtonsForm page={leanPage} user={session.user} />
         <PageLinksForm page={leanPage} user={session.user} />
-
-
       </>
     );
   }

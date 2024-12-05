@@ -31,6 +31,7 @@ export default async function AppTemplate({ children, ...rest }) {
   }
   mongoose.connect(process.env.MONGO_URI);
   const page = await Page.findOne({ owner: session.user.email });
+  console.log("my page",page)
   return (
     <html lang="en">
       <body className={lato.className}>
@@ -64,7 +65,7 @@ export default async function AppTemplate({ children, ...rest }) {
                   href={"/" + page.uri}
                   className="text-center mt-4 flex gap-1 items-center justify-center"
                 >
-                  <FaLink size="lg" className="text-blue-500" />
+                  <FaLink size={15} className="text-blue-500" />
                   <span className="text-xl text-gray-300">/</span>
                   <span>{page.uri}</span>
                 </Link>
