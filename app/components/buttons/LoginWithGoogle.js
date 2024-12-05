@@ -4,13 +4,7 @@ import { FaGoogle } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 
 export default function LoginWithGoogle() {
-  const handleSignIn = async () => {
-    try {
-      await signIn("google");
-    } catch (error) {
-      console.error("Error signing in with Google:", error);
-    }
-  };
+
 
   return (
     <button
