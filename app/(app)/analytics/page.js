@@ -1,15 +1,17 @@
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
-import Chart from "@/components/Chart";
-import SectionBox from "@/components/layout/SectionBox";
+// import Chart from "@/components/Chart";
+
 import {Event} from "@/models/Event";
 import {Page} from "@/models/Page";
-import {faLink} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FaLink,
+} from "react-icons/fa";
+
 import {differenceInDays, formatISO9075, isToday} from "date-fns";
 import mongoose from "mongoose";
 import {getServerSession} from "next-auth";
 import {redirect} from "next/navigation";
-import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
+import SectionBox from "@/app/components/layout/SectionBox";
+// import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
 
 
 export default async function AnalyticsPage() {
@@ -64,7 +66,7 @@ export default async function AnalyticsPage() {
         {page.links.map(link => (
           <div key={link.title} className="md:flex gap-4 items-center border-t border-gray-200 py-4">
             <div className="text-blue-500 pl-4">
-              <FontAwesomeIcon icon={faLink} />
+              <FaLink />
             </div>
             <div className="grow">
               <h3>{link.title || 'no title'}</h3>
